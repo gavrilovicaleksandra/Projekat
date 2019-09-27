@@ -30,9 +30,13 @@ public class HumanitySettings {
 	}
 
 	public static WebElement enterPass(WebDriver driver, String data) {
+		try {
 		we = driver.findElement(By.xpath(PASSWORD_XPATH));
 		we.sendKeys(data);
-		return we;
+		}catch (Exception e) {
+			System.out.println("Error: "+e);
+		}
+		return we;		
 	}
 
 	public static void logIn(WebDriver driver) {

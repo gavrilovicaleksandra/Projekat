@@ -24,7 +24,7 @@ public class HumanityEditStaff {
 	private static final String EMPLOYEE_XPATH_ENDING = "')]";
 	private static final String LIST_OF_EMPL_XPATH = "//table[contains(@class,'employeesList')]//tbody";
 
-	static WebElement we = null;
+	private static WebElement we = null;
 
 	public static WebElement enterMail(WebDriver driver, String data) {
 		we = driver.findElement(By.xpath(USERNAME_XPATH));
@@ -42,12 +42,17 @@ public class HumanityEditStaff {
 		we = driver.findElement(By.xpath(BUTTON_XPATH));
 		we.click();
 	}
-	public static void editThisEmployee(WebDriver driver, String name) {//dohvatimo po tom imenu koje trazimo
+
+	
+	
+	
+	public static void editThisEmployee(WebDriver driver, String name) {// dohvatimo po tom imenu koje trazimo
 		we = driver.findElement(By.xpath(EMPLOYEE_XPATH + name + EMPLOYEE_XPATH_ENDING));
 		we.click();
 	}
 
-	public static List<String> getList(WebDriver driver) {// daje nam mogucnost da SYSO psotojece zaposlene da mozemo da pristupimo nekom
+	public static List<String> getList(WebDriver driver) {// daje nam mogucnost da SYSO psotojece zaposlene da mozemo da
+															// pristupimo nekom
 		List<WebElement> list = driver.findElement(By.xpath(LIST_OF_EMPL_XPATH))
 				.findElements(By.className("staff-employee"));
 		List<String> listInner = new ArrayList<String>();
@@ -61,15 +66,19 @@ public class HumanityEditStaff {
 		getList(driver).contains(name + " ");
 		return true;
 	}
+	
+	
 
 	public static void clickEdit(WebDriver driver) {
 		we = driver.findElement(By.xpath(EDIT_XPATH));
 		we.click();
 	}
 
-	public static void clickUploadPic(WebDriver driver) {
-		we = driver.findElement(By.xpath(PHOTO_XPATH));
-		we.click();
+	
+	
+	public static boolean uploadPicture(WebDriver driver) {
+		driver.findElement(By.xpath(PHOTO_XPATH)).sendKeys("C:\\Users\\Dell\\Desktop\\s.gif");
+		return true;
 	}
 
 	public static WebElement setNickname(WebDriver driver, String nickname) {
@@ -82,6 +91,5 @@ public class HumanityEditStaff {
 		we = driver.findElement(By.xpath(SAVE_XPATH));
 		we.click();
 	}
-
 
 }
